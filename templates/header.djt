@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Loklak Webclient</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.ico') }}" type="image/ico" sizes="16x16">
+    <link href="{{ url_for('static', filename='internal/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />   
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Theme style -->
+    <link href="{{ url_for('static', filename='internal/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="{{ url_for('static', filename='internal/css/skins/_all-skins.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- iCheck -->
+    <link href="{{ url_for('static', filename='internal/plugins/iCheck/flat/blue.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="{{ url_for('static', filename='internal/plugins/morris/morris.css') }}" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="{{ url_for('static', filename='internal/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Date Picker -->
+    <link href="{{ url_for('static', filename='internal/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="{{ url_for('static', filename='internal/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="{{ url_for('static', filename='internal/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="skin-black">
+    <div class="wrapper">
+      
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo"><img src="{{ url_for('static', filename='images/loklak.png') }}" alt=""><code>Loklak</code></a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+              <a href="/">
+                <i class="fa fa-dashboard"></i> <span>Home</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="/about">
+                <i class="fa fa-list"></i> <span>About</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-search"></i> <span>Search</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-line-chart"></i> <span>Statistics</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-th-list"></i> <span>Wall</span>
+              </a>
+            </li>
+
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      {% block body %}{% endblock %}
+      {% extends "footer.djt" %}

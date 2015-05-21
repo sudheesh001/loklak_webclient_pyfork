@@ -1,0 +1,20 @@
+{% extends "header.djt" %}
+{% block body %}
+<div class="content-wrapper" style="background-color:black;">
+	<section class="content-header">
+
+	</section>
+	<section class="content">
+
+		<div class="error-page">
+			<h2 class="headline text-yellow"> 404</h2>
+			<div class="error-content">
+				<h3 style="color:white;"><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+				<p style="color:white;">The page you are looking for is not here. It might have been moved, removed, or had its name and address changed. It might otherwise be temporarily unavailable for technical reasons.
+
+				The good news is that you can probably find what you are looking for by Going back one step.</p>
+			</div><!-- /.error-content -->
+		</div><!-- /.error-page -->
+	</section>
+</div>
+{% endblock %}
