@@ -46,5 +46,14 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url_for('static', filename='internal/js/demo.js') }}" type="text/javascript"></script>
+
+    <script src="{{ url_for('static',filename='internal/plugins/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='internal/plugins/input-mask/jquery.inputmask.date.extensions.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='internal/plugins/input-mask/jquery.inputmask.extensions.js')}}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
+
+
+    <script src="{{ url_for('static', filename='internal/plugins/daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='internal/plugins/timepicker/bootstrap-timepicker.min.js') }}" type="text/javascript"></script>
   </body>
 </html>

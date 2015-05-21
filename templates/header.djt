@@ -40,7 +40,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo"><img src="{{ url_for('static', filename='images/loklak.png') }}" alt=""><code>Loklak</code></a>
+        <a href="index2.html" class="logo"><img src="{{ url_for('static', filename='images/loklak.png') }}" alt="">&nbsp;<code>Loklak</code></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->

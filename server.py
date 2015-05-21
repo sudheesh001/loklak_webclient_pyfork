@@ -60,6 +60,62 @@ def about():
 def screen():
 	return render_template('index.djt')
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+	if request.method == 'POST':
+		searchValue = request.form['searchparam']
+		params = dict(
+			q = searchValue
+		)
+		url = 'http://localhost:9100/api/search.json'
+		resp = requests.get(url=url, params=params)
+		data = json.loads(resp.text)
+		pprint(data)
+		statuses = data["statuses"]
+		return render_template('search.djt',tweets=statuses, searchValue=searchValue)
+	return render_template('search.djt')
+
+@app.route('/statistics', methods=['GET', 'POST'])
+def statistics():
+	if request.method == 'POST':
+		query = request.form['q']
+		sinceDate = request.form['since']
+		untilDate = request.form['until']
+		print query
+		print sinceDate
+		print untilDate
+		params = dict(
+			q = query,
+			since = sinceDate,
+			until = untilDate,
+			source = "cache",
+			count = 0,
+			field = "mentions,hashtags",
+			limit = 100
+		)
+		url = 'http://localhost:9100/api/search.json'
+		resp = requests.get(url=url, params=params)
+		data = json.loads(resp.text)
+		# aggregationsData = data["aggregations"]
+		# mentions = aggregationsData["mentions"]
+		# hashtags = aggregationsData["hashtags"]
+		statuses = data["statuses"]
+		creators = []
+		createdTimes = []
+		for tweetObject in statuses:
+			creators.append(tweetObject["screen_name"])
+			createdTimes.append(tweetObject["created_at"])
+		creatorsInfo = dict(Counter(creators).iteritems())
+		timeInfo = dict(Counter(createdTimes).iteritems())
+		creatorJSON = {}
+		timeJSON = {}
+		for key, value in creatorsInfo.iteritems():
+			creatorJSON[str(key)] = value
+		for key, value in timeInfo.iteritems():
+			timeJSON[str(key)] = value
+		return render_template('statistics.djt', creatorJSON=creatorJSON, timeJSON=timeJSON)
+	return render_template('statistics.djt')
+
 @app.teardown_appcontext
 def close_db(self):
 	"""Closes the database again at the end of the request."""
