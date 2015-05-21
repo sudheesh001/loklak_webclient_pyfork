@@ -52,6 +52,10 @@ def get_cursor():
 def page_not_found(e):
 	return render_template('404.djt'), 404
 
+@app.route('/about')
+def about():
+	return render_template('about.djt')
+
 @app.route('/')
 def screen():
 	return render_template('index.djt')
