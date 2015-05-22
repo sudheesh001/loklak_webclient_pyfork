@@ -57,6 +57,14 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
+            {% if searchValue is defined %}
+          <div class="row">
+            <img src="{{ url_for('static', filename='images/loklak_wall.png') }}" alt="" height="200" width="200" style="padding:20px;margin-left:20px;">
+            <h1 style="color:white;"><li class="header">Wall for </li>
+              <li class="header"><strong>{{searchValue}}</strong></li></h1>
+          </div>
+            {% endif %}
+          
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">

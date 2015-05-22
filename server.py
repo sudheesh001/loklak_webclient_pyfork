@@ -1,7 +1,7 @@
 # all the imports
 import os,binascii
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-		render_template, flash, Blueprint
+		render_template, flash, Blueprint, stream_with_context, Response
 from flaskext.mysql import MySQL
 from flask_mail import Mail,Message
 from config import config, ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
@@ -10,6 +10,7 @@ from flask import send_from_directory
 import datetime, json
 from pprint import pprint
 from collections import Counter
+from time import sleep
 import re, datetime
 import urllib2, urllib
 import requests, chartkick
@@ -52,6 +53,14 @@ def get_cursor():
 def page_not_found(e):
 	return render_template('404.djt'), 404
 
+@app.route('/stream')
+def streamed_response():
+    def generate():
+        for i in range(0,50):
+        	sleep(2)
+        	yield i
+    return Response(stream_with_context(generate()))
+
 @app.route('/about')
 def about():
 	return render_template('about.djt')
@@ -59,6 +68,22 @@ def about():
 @app.route('/')
 def screen():
 	return render_template('index.djt')
+
+@app.route('/wall', methods=['GET', 'POST'])
+def wall():
+	if request.method == 'POST':
+		searchValue = request.form['query']
+		params = dict(
+			q = searchValue
+		)
+		url = 'http://localhost:9100/api/search.json'
+		resp = requests.get(url=url, params=params)
+		data = json.loads(resp.text)
+		pprint(data)
+		status = data["statuses"]
+		statuses = dict(status)
+		return render_template('wall.djt',tweets=statuses, searchValue=searchValue)
+	return render_template('wall.djt')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
