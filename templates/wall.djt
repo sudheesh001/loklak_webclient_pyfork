@@ -15,26 +15,19 @@
             <div class="col-lg-12 col-md-12">
                 {% if tweets is defined %}
                 <div class="col-lg-1 col-md-1"></div>
-                <div class="col-lg-10 col-md-10">
-                    <div class="box box-primary">
-                        <div class="box-body">
-                          <ul class="products-list product-list-in-box">
-                            {% for tweet in tweets %}
-                            <li class="item">
-                              <div class="product-img">
-                                <img src="{{tweet.user.profile_image_url_https}}" alt="{{tweet.screen_name}}" height="200" width="200">
-                              </div>
-                              <div class="product-info">
-                                <a href="{{tweet.link}}" class="product-title">{{tweet.screen_name}} </a>
-                                <span class="product-description">
-                                  {{tweet.text}}
-                                </span>
-                              </div>
-                            </li><!-- /.item -->
-                            {% endfor %}
-                          </ul>
-                        </div><!-- /.box-body -->
-                      </div>
+                <div id="tweets" class="col-lg-10 col-md-10">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div id="profileimage"></div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div id="tweetname"></div>
+                            <div id="tweettext"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="newTweets" class="col-lg-10 col-md-10">
+                    
                 </div>
                 <div class="col-lg-1 col-md-1"></div>
                     
@@ -56,7 +49,16 @@
         </div>
     </section>
     <script>
-    var x = {{tweets}}
+    var x = {{tweets}};
+    for (var i=0; i < x.length; i++) {
+        var object = x[i];
+        console.log(object);
+        imageStr = '<img src=\"'+object['user']['profile_image_url_https']+'\" alt="" >';
+        $('#tweetname').prepend(object['user']['screen_name']);
+        $('#profileimage').prepend(imageStr);
+        $('#tweettext').prepend(object['text']);
+        $('#tweets').appendTo('#newTweets');
+    }
     </script>
 </div>
 {% endblock %}
